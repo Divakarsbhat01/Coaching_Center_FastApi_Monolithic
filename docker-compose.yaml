@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mongo:
+      image: mongo:4.4
+      ports: 
+        - 27017:27017
+      networks:
+        - app-network
+      volumes: 
+        - dbdata6:/data/db
+  mysql-db:
+    image: mysql
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - app-network
+    volumes: 
+      - dbdata5:/data/db
+  fastapi:
+    depends_on:
+      - mongo
+      - mysql-db
+    build: .
+    command: sh -c "uvicorn main:app --reload"
+    ports:
+      - 8000:8000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: app-network
+
+volumes:
+  dbdata5:
+  dbdata6:
