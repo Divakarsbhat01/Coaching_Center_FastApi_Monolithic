@@ -25,6 +25,7 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def api_working_status():
+    print(settings.SQL_ALCHEMY_DATABASE_URL)
     return {"Status": settings.upstatus}
 
 

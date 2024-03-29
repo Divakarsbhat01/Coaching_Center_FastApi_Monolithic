@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     SECRET_KEY:str
     ALGORITHM:str
     Access_token_expire_time:int
+    SQL_USERNAME:str
+    SQL_PASSWORD:str
+    SQL_HOST_NAME:str
+    SQL_DB_nAME:str
     model_config = SettingsConfigDict(env_file=".env")
 
 settings=Settings()
