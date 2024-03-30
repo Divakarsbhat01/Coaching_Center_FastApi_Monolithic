@@ -30,7 +30,7 @@ pipeline {
             {
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) 
                 {
-                    sh "docker login -u divakarsbhat1 -p ${dockerhubpwd}"
+                    sh "docker login -u ${dockerhubuser} -p ${dockerhubpwd}"
                     sh "docker tag coacenmonofastapi divakarsbhat1/coacenmonofastapi:latest"
                     sh "docker push divakarsbhat1/coacenmonofastapi:latest"
                 }
